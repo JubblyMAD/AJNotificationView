@@ -269,7 +269,6 @@ static NSMutableArray *notificationQueue = nil;       // Global notification que
                          self.titleLabel.alpha = 0.0;
                      }
                      completion:^(BOOL finished) {
-                         if (finished){
                              [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.1f];
                              
                              // Remove this notification from the queue
@@ -281,7 +280,6 @@ static NSMutableArray *notificationQueue = nil;       // Global notification que
                                  AJNotificationView *nextNotification = [notificationQueue objectAtIndex:0];
                                  [nextNotification showAfterDelay:0];
                              }
-                         }
                      }];
 }
 
