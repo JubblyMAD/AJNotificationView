@@ -70,4 +70,6 @@ typedef enum {
 
 + (void)clearQueue;
 
++ (void)removeNotificationsFromQueue:(NSArray *)notifications;
+
 @end

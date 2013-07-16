@@ -316,6 +316,28 @@ static NSMutableArray *notificationQueue = nil;       // Global notification que
     }
 }
 
++ (void)removeNotificationsFromQueue:(NSArray *)notifications
+{
+    if ([notifications count] > 0 && [notificationQueue count] > 0)
+    {
+        AJNotificationView *currentNotification = [notificationQueue objectAtIndex:0];
+        
+        BOOL notiificationsToRemoveIncludesCurrentNotification = [notifications containsObject:currentNotification];
+        
+        if (notiificationsToRemoveIncludesCurrentNotification)
+        {
+            NSMutableArray *notificationsToRemoveNotIncludingCurrentNotification = [NSMutableArray arrayWithArray:notifications];
+            [notificationsToRemoveNotIncludingCurrentNotification removeObject:currentNotification];
+            [notificationQueue removeObjectsInArray:notificationsToRemoveNotIncludingCurrentNotification];
+            [currentNotification hide];
+        }
+        else
+        {
+            [notificationQueue removeObjectsInArray:notifications];
+        }
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Touch events
 ////////////////////////////////////////////////////////////////////////
